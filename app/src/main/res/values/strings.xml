@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">OMDB Movies</string>
+    <string name="poster_name">Movie</string>
+    <string name="tab_search">Search</string>
+    <string name="tab_favorites">Favorites</string>
+    <string name="search_hint">Search…</string>
+    <string name="search_query_hint">Search Movies…</string>
+    <string name="error_no_connection">No connection</string>
+    <string name="error_movie_fetch">Something went wrong. Please try again!</string>
+    <string name="empty_results">No results!</string>
+    <string name="movie_name">Name: %s</string>
+    <string name="movie_director">Director: %s</string>
+    <string name="movie_plot">Plot: %s</string>
+    <string name="movie_year">Year: %s</string>
+    <string name="movie_detail_director">Directed by: %s</string>
+    <string name="movie_detail_plot">Plot: \n\n %s</string>
+    <string name="movie_details_text_area">%s</string>
+    <string name="title_favorite">Favorite</string>
+</resources>

@@ -1,0 +1,84 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.melvillec.salesforceomdb"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    /* Retrofit using RxJava2, Okhttp, Okhttp logging interceptor, Gson  */
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okHttpVersion"
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.ext.okHttpVersion"
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+    /* Android Support Library: RecyclerView, CardView  */
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android:flexbox:1.1.0'
+    implementation "com.evernote:android-state:$rootProject.ext.androidStateVersion"
+
+    /* Dagger2 - We are going to use dagger.android which includes
+     * support for Activity and fragment injection */
+    implementation "com.google.dagger:dagger-android:$rootProject.ext.daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.ext.daggerVersion"
+
+    /* Picasso lib for image loading  */
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    /* Android Architecture Component - ConstraintLayout  */
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.ext.constraintLayoutVersion"
+
+    /* Android Architecture Component - LiveData & ViewModel  */
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+
+    /* Android Architecture Component - Room DB Persistence Lib  */
+    implementation 'androidx.room:room-runtime:2.0.0'
+    implementation 'androidx.room:room-rxjava2:2.0.0'
+
+    annotationProcessor 'androidx.room:room-compiler:2.0.0'
+    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.ext.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
+    annotationProcessor "com.evernote:android-state-processor:$rootProject.ext.androidStateVersion"
+
+    testImplementation 'junit:junit:4.12'
+    testImplementation "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
+    testImplementation 'org.robolectric:robolectric:4.3'
+    testImplementation 'com.squareup.okhttp3:mockwebserver:3.9.1'
+    testImplementation 'org.mockito:mockito-core:2.23.4'
+
+    androidTestImplementation 'org.mockito:mockito-android:2.23.4'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.arch.core:core-testing:2.0.0'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
