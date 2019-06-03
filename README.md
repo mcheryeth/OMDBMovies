@@ -1,5 +1,5 @@
-# Salesforce Android Coding Test - OMDB Movies App
-This is an app that allows users to search for movies using the Open Movie Database Search API.
+# OMDB Movies Android App
+An Android app that allows users to search for movies using the Open Movie Database Search API.
 
 #### App Features
 * User can search for any movie of their choice
