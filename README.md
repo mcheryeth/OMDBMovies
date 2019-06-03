@@ -45,3 +45,7 @@ Based on MVVM architecture and repository pattern.
 * [Okhhtp3](https://github.com/square/okhttp) for implementing interceptor, logging and mocking web server.
 * [Mockito](https://site.mockito.org/) for implementing unit test cases
 * [Picasso](http://square.github.io/picasso/) for image loading.
+
+#### Build Instructions
+* Build via command line : <b>./gradlew assembleDebug </b>. Resulting apk can then be found in <b>app/build/outputs/apk/app-debug.apk</b>
+* Or Android Studio!
