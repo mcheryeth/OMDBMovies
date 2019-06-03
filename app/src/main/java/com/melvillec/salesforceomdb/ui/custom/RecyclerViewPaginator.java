@@ -12,7 +12,7 @@ import static androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE;
 public abstract class RecyclerViewPaginator extends RecyclerView.OnScrollListener {
 
     private Long currentPage = 1l;
-    private Integer threshold = 10;
+    private Integer threshold = 2;
     private boolean endWithAuto = false;
 
     private RecyclerView recyclerView;

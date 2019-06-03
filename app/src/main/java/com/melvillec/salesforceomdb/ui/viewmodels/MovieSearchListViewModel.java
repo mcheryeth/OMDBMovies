@@ -8,13 +8,14 @@ import com.melvillec.salesforceomdb.data.local.dao.MovieDao;
 import com.melvillec.salesforceomdb.data.local.entity.MovieEntity;
 import com.melvillec.salesforceomdb.data.remote.Resource;
 import com.melvillec.salesforceomdb.data.remote.api.MovieApiService;
-import com.melvillec.salesforceomdb.repository.MovieRepository;
+import com.melvillec.salesforceomdb.data.repository.MovieRepository;
+import com.melvillec.salesforceomdb.ui.callbacks.IUpdateMovieCallback;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-public class MovieSearchListViewModel extends BaseViewModel {
+public class MovieSearchListViewModel extends BaseViewModel implements IUpdateMovieCallback {
 
     @Inject
     public MovieSearchListViewModel(MovieDao movieDao, MovieApiService movieApiService) {
@@ -26,9 +27,15 @@ public class MovieSearchListViewModel extends BaseViewModel {
 
     @SuppressLint("CheckResult")
     public void loadMovies(String title, Long currentPage) {
-        movieRepository.searchMoviesByTitle(title, currentPage)
-                .doOnSubscribe(this::addToDisposable)
-                .subscribe(resource -> getMoviesLiveData().postValue(resource));
+        movieRepository.searchMoviesByTitle(title, currentPage,
+                errorResource -> { getMoviesLiveData().postValue(errorResource); })
+                    .doOnSubscribe(this::addToDisposable)
+                    .subscribe(successResource -> getMoviesLiveData().postValue(successResource));
+    }
+
+    @Override
+    public void onMovieUpdated(MovieEntity movieEntity) {
+        movieRepository.updateMovie(movieEntity);
     }
 
     public boolean isLastPage() {

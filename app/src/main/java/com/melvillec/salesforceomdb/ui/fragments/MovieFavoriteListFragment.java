@@ -70,7 +70,7 @@ public class MovieFavoriteListFragment extends Fragment implements RecyclerItemC
     private void initializeUI() {
         dataBinding.moviesRv.setLayoutManager(new LinearLayoutManager(getContext()));
         dataBinding.moviesRv.setHasFixedSize(true);
-        movieListRecyclerAdapter = new MovieListRecyclerAdapter();
+        movieListRecyclerAdapter = new MovieListRecyclerAdapter(movieFavoriteListViewModel);
         dataBinding.moviesRv.setAdapter(movieListRecyclerAdapter);
 
         dataBinding.moviesRv.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), this));

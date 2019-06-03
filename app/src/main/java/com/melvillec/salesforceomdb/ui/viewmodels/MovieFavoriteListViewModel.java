@@ -8,13 +8,14 @@ import com.melvillec.salesforceomdb.data.local.dao.MovieDao;
 import com.melvillec.salesforceomdb.data.local.entity.MovieEntity;
 import com.melvillec.salesforceomdb.data.remote.Resource;
 import com.melvillec.salesforceomdb.data.remote.api.MovieApiService;
-import com.melvillec.salesforceomdb.repository.MovieRepository;
+import com.melvillec.salesforceomdb.data.repository.MovieRepository;
+import com.melvillec.salesforceomdb.ui.callbacks.IUpdateMovieCallback;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-public class MovieFavoriteListViewModel extends BaseViewModel {
+public class MovieFavoriteListViewModel extends BaseViewModel implements IUpdateMovieCallback {
 
     @Inject
     public MovieFavoriteListViewModel(MovieDao movieDao, MovieApiService movieApiService) {
@@ -34,4 +35,10 @@ public class MovieFavoriteListViewModel extends BaseViewModel {
     public MutableLiveData<Resource<List<MovieEntity>>> getMoviesLiveData() {
         return moviesLiveData;
     }
+
+    @Override
+    public void onMovieUpdated(MovieEntity movieEntity) {
+        movieRepository.updateMovie(movieEntity);
+    }
+
 }

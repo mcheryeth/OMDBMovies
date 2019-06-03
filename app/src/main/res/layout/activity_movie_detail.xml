@@ -58,7 +58,7 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_gravity="top|end"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="8dp"
                     app:layout_collapseMode="pin"
                     android:src="@drawable/favorite_selector"
@@ -100,7 +100,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:textStyle="bold"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     tools:text="Details: "/>
 
                 <TextView
@@ -113,7 +113,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/details_tv"
                     android:textStyle="italic"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     tools:text="Plot: "/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,11 +8,12 @@ import com.melvillec.salesforceomdb.data.local.dao.MovieDao;
 import com.melvillec.salesforceomdb.data.local.entity.MovieEntity;
 import com.melvillec.salesforceomdb.data.remote.Resource;
 import com.melvillec.salesforceomdb.data.remote.api.MovieApiService;
-import com.melvillec.salesforceomdb.repository.MovieRepository;
+import com.melvillec.salesforceomdb.data.repository.MovieRepository;
+import com.melvillec.salesforceomdb.ui.callbacks.IUpdateMovieCallback;
 
 import javax.inject.Inject;
 
-public class MovieDetailViewModel extends BaseViewModel {
+public class MovieDetailViewModel extends BaseViewModel implements IUpdateMovieCallback {
 
     @Inject
     public MovieDetailViewModel(MovieDao movieDao, MovieApiService movieApiService) {
@@ -29,7 +30,8 @@ public class MovieDetailViewModel extends BaseViewModel {
                 .subscribe(resource -> getMovieLiveData().postValue(resource));
     }
 
-    public void updateMovie(MovieEntity movieEntity) {
+    @Override
+    public void onMovieUpdated(MovieEntity movieEntity) {
         movieRepository.updateMovie(movieEntity);
     }
 

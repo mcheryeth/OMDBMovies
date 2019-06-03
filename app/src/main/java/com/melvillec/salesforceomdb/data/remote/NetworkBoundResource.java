@@ -48,6 +48,8 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
 
     protected void onFetchFailed(Throwable t) {}
 
+    protected void onFetchFailed(Resource<ResultType> errorResource) {}
+
     @WorkerThread
     protected RequestType processResponse(Resource<RequestType> response) {return response.data;}
 

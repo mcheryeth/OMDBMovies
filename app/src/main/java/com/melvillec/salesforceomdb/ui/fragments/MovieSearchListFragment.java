@@ -36,7 +36,7 @@ import javax.inject.Inject;
 import dagger.android.support.AndroidSupportInjection;
 
 /**
- * A placeholder fragment containing a simple view.
+ * This fragment holds a search view and a recycler view. Search results are populated into the recycler view
  */
 public class MovieSearchListFragment extends Fragment implements SearchView.OnQueryTextListener, RecyclerItemClickListener.OnRecyclerViewItemClickListener {
 
@@ -78,7 +78,7 @@ public class MovieSearchListFragment extends Fragment implements SearchView.OnQu
 
         dataBinding.moviesRv.setLayoutManager(new LinearLayoutManager(getContext()));
         dataBinding.moviesRv.setHasFixedSize(true);
-        movieListRecyclerAdapter = new MovieListRecyclerAdapter();
+        movieListRecyclerAdapter = new MovieListRecyclerAdapter(movieSearchListViewModel);
         dataBinding.moviesRv.setAdapter(movieListRecyclerAdapter);
 
         dataBinding.moviesRv.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), this));
@@ -121,12 +121,12 @@ public class MovieSearchListFragment extends Fragment implements SearchView.OnQu
         searchEditText.setHintTextColor(getResources().getColor(android.R.color.darker_gray));
     }
 
-    protected void initializeViewModel() {
+    private void initializeViewModel() {
         movieSearchListViewModel = ViewModelProviders.of(this, viewModelFactory).get(MovieSearchListViewModel.class);
         movieSearchListViewModel.getMoviesLiveData().observe(this, resource -> {
             if (resource.isLoading()) {
                 //no-op
-            } else if (resource.isSuccess()) {
+            } else if (resource.isSuccess() && (resource.message == null || resource.message.isEmpty())) {
                 updateMovieList(resource.data);
             } else {
                 handleErrorResponse(resource.message);
@@ -135,7 +135,7 @@ public class MovieSearchListFragment extends Fragment implements SearchView.OnQu
     }
 
     private void fetchMovies(String searchQuery) {
-        movieListRecyclerAdapter.clearItems();
+       movieListRecyclerAdapter.clearItems();
 
         if (searchQuery != null && !searchQuery.isEmpty()) {
             displayProgressBar();
@@ -145,14 +145,14 @@ public class MovieSearchListFragment extends Fragment implements SearchView.OnQu
         }
     }
 
-    protected void updateMovieList(List<MovieEntity> movieEntities) {
+    private void updateMovieList(List<MovieEntity> movieEntities) {
         hideProgressBar();
         dataBinding.swipeContainer.setRefreshing(false);
         dataBinding.moviesRv.setVisibility(View.VISIBLE);
         movieListRecyclerAdapter.setItems(movieEntities);
     }
 
-    protected void handleErrorResponse(String message) {
+    private void handleErrorResponse(String message) {
         hideProgressBar();
         dataBinding.swipeContainer.setRefreshing(false);
         if (message == null || message.length() == 0) {
@@ -161,12 +161,12 @@ public class MovieSearchListFragment extends Fragment implements SearchView.OnQu
         Snackbar.make(dataBinding.moviesRv, message, Snackbar.LENGTH_SHORT).show();
     }
 
-    protected void displayProgressBar() {
+    private void displayProgressBar() {
         dataBinding.moviesRv.setVisibility(View.GONE);
         dataBinding.progressBar.setVisibility(View.VISIBLE);
     }
 
-    protected void hideProgressBar() {
+    private void hideProgressBar() {
         dataBinding.moviesRv.setVisibility(View.VISIBLE);
         dataBinding.progressBar.setVisibility(View.GONE);
     }

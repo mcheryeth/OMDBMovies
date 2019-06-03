@@ -82,7 +82,7 @@ public class MovieDetailActivity extends AppCompatActivity {
             binding.favoriteIv.setSelected(!movieEntity.isFavorite());
             movieEntity.setFavorite(!movieEntity.isFavorite());
 
-            movieDetailViewModel.updateMovie(movieEntity);
+            movieDetailViewModel.onMovieUpdated(movieEntity);
         });
 
         Picasso.get().load(movieEntity.getPoster())

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.melvillec.salesforceomdb.data.local.entity.MovieEntity;
 import com.melvillec.salesforceomdb.databinding.MovieListItemBinding;
+import com.melvillec.salesforceomdb.ui.callbacks.IUpdateMovieCallback;
 import com.melvillec.salesforceomdb.ui.viewholders.MovieListItemViewHolder;
 
 import java.util.ArrayList;
@@ -16,8 +17,10 @@ import java.util.List;
 public class MovieListRecyclerAdapter extends RecyclerView.Adapter<MovieListItemViewHolder> {
 
     private List<MovieEntity> moviesList;
-    public MovieListRecyclerAdapter() {
+    private IUpdateMovieCallback callback;
+    public MovieListRecyclerAdapter(IUpdateMovieCallback callback) {
         this.moviesList = new ArrayList<>();
+        this.callback = callback;
     }
 
     @NonNull
@@ -25,7 +28,7 @@ public class MovieListRecyclerAdapter extends RecyclerView.Adapter<MovieListItem
     public MovieListItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         MovieListItemBinding itemBinding = MovieListItemBinding.inflate(layoutInflater, parent, false);
-        return new MovieListItemViewHolder(itemBinding);
+        return new MovieListItemViewHolder(itemBinding, callback);
     }
 
     public void setItems(List<MovieEntity> movies) {

@@ -3,6 +3,8 @@ This is an app that allows users to search for movies using the Open Movie Datab
 
 #### App Features
 * User can search for any movie of their choice
+* User can view basic details (title, year, poster) of each movie in the search results 
+(Note: full details are visible once the user has selected/viewed a movie to avoid making too many network requests)
 * User can select a search result to view the full details of the movie
 * User can favorite a movie from the Details view
 * User can view & select favorite movies from the search results

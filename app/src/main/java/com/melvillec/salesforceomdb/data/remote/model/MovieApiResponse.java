@@ -25,6 +25,10 @@ public class MovieApiResponse implements Parcelable
     @Expose
     private String response;
 
+    @SerializedName("Error")
+    @Expose
+    private String error;
+
     public final static Creator<MovieApiResponse> CREATOR = new Creator<MovieApiResponse>() {
 
 
@@ -73,6 +77,14 @@ public class MovieApiResponse implements Parcelable
 
     public void setResponse(String response) {
         this.response = response;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
 
     public void writeToParcel(Parcel dest, int flags) {
