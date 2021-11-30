@@ -41,8 +41,8 @@ Based on MVVM architecture and repository pattern.
 * [RxJava2](https://github.com/ReactiveX/RxJava) for implementing Observable pattern.
 * [Dagger 2](https://google.github.io/dagger/) for dependency injection.
 * [Retrofit 2](https://square.github.io/retrofit/) for API integration.
-* [Gson](https://github.com/google/gson) for serialisation.
-* [Okhhtp3](https://github.com/square/okhttp) for implementing interceptor, logging and mocking web server.
+* [Gson](https://github.com/google/gson) for serialization.
+* [Okhttp3](https://github.com/square/okhttp) for implementing interceptor, logging and mocking web server.
 * [Mockito](https://site.mockito.org/) for implementing unit test cases
 * [Picasso](http://square.github.io/picasso/) for image loading.
 
